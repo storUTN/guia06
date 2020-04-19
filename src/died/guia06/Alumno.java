@@ -25,8 +25,10 @@ public class Alumno implements Comparable<Alumno>{
 	}
 
 	public void aprobar(Curso c) {
+		if(cursando.contains(c)) {
 		aprobados.add(c);
 		cursando.remove(c);
+		}
 	}
 
 	public void inscripcionAceptada(Curso c) {
