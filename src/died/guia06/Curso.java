@@ -59,12 +59,14 @@ public class Curso {
 	 */
 	public Boolean inscribir(Alumno a) {
 		try{
+			if(creditosRequeridos!=null)
 			if((cupo>inscriptos.size())&&(a.creditosObtenidos()>=creditosRequeridos)&&(a.cantCursando()<3)) {
 			log.registrar(this, "inscribir ",a.toString());
 			a.inscripcionAceptada(this);
 			inscriptos.add(a);
 			return true;
 			}
+			else return false;
 			else return false;
 		}
 		catch(IOException e1){
@@ -75,7 +77,8 @@ public class Curso {
 	
 	
 	/**
-	 * imprime los inscriptos en orden alfabetico
+	 * imprime los inscriptos en orden alfabetico,
+	 * por sus creditos o por sus numeros de libreta
 	 */
 	//Puede imprimir los incriptos en distintos ordenes segun x
 	public void imprimirInscriptos(int x) {
@@ -104,6 +107,9 @@ public class Curso {
 	}
 	public int getCreditos() {
 		return creditos; 
+	}
+	public String getNombre() {
+		return nombre;
 	}
 	public void setCupo(int num) {
 		cupo=num;
