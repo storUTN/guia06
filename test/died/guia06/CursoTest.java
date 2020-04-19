@@ -12,8 +12,7 @@ class CursoTest {
 	Alumno b1;
 	Alumno b2;
 	@Test
-	//int creditos,int credReq,int cupo,String nombre,int id,int cicloLect
-	void testInscribirAlumno() {
+	void testInscribir() {
 		a1= new Curso(1,0,1,"Matematicas",0,1);
 		a2= new Curso(1,0,1,"Fisica",0,1);
 		a3= new Curso(1,0,1,"Programacion",0,1);
@@ -30,6 +29,22 @@ class CursoTest {
 		a4= new Curso(1,0,1,"Ingles",0,1);
 		assertFalse(a4.inscribir(b1),"El alumno ya esta cursando 3 materias");
 		
+	}
+	@Test
+	void testInscribirAlumno() {
+		a1= new Curso(1,0,1,"Matematicas",0,1);
+		a2= new Curso(1,0,1,"Fisica",0,1);
+		a3= new Curso(1,0,1,"Programacion",0,1);
+		a4= new Curso(1,1,1,"Ingles",0,1);
+		b1= new Alumno(1,"Juan");
+		b2= new Alumno(2,"Pedro");
+		assertThrows(ExcCreditos.class,()->a4.inscribirAlumno(b1));
+		a1.inscribir(b1);
+		assertThrows(ExcCupo.class,()->a1.inscribirAlumno(b2));
+		a2.inscribir(b1);
+		a3.inscribir(b1);
+		a4= new Curso(1,0,1,"Ingles",0,1);
+		assertThrows(ExcCursado.class,()->a4.inscribirAlumno(b1),"El alumno ya esta cursando 3 materias");
 	}
 	@Test
 	void testImprimirInscriptos() {

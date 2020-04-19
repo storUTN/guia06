@@ -76,13 +76,13 @@ public class Curso {
 	}
 	
 	public void inscribirAlumno(Alumno a) throws ExcCursado,ExcCreditos,ExcCupo {
-		if(cupo<inscriptos.size()) {
+		if(cupo<=inscriptos.size()) {
 			throw new ExcCupo();
 		}
 		if(a.creditosObtenidos()<creditosRequeridos) {
 			throw new ExcCreditos();
 		}
-		if(a.cantCursando()>2) {
+		if(a.cantCursando()>=3) {
 			throw new ExcCursado();
 		}
 		try {
