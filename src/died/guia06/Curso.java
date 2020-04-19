@@ -68,5 +68,8 @@ public class Curso {
 		System.out.printf("Ha ocurrido un error: "+e.getMessage()+"\n");
 	}
 	}
-
+	//definicion de un getter para creditos
+	public int getCreditos() {
+		return creditos; 
+	}
 }
