@@ -75,6 +75,28 @@ public class Curso {
 		}
 	}
 	
+	public void inscribirAlumno(Alumno a) throws ExcCursado,ExcCreditos,ExcCupo {
+		if(cupo<inscriptos.size()) {
+			throw new ExcCupo();
+		}
+		if(a.creditosObtenidos()<creditosRequeridos) {
+			throw new ExcCreditos();
+		}
+		if(a.cantCursando()>2) {
+			throw new ExcCursado();
+		}
+		try {
+			log.registrar(this, "inscribir ",a.toString());
+			a.inscripcionAceptada(this);
+			inscriptos.add(a);
+		}
+		catch(IOException e){
+			System.out.printf("Ha ocurrido un error: "+e.getMessage()+"\n");
+		}
+	}
+	
+	
+	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico,
