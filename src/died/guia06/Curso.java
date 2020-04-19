@@ -2,6 +2,7 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -26,6 +27,16 @@ public class Curso {
 	
 	private Registro log;
 	
+	public Curso(int creditos,int credReq,int cupo,String nombre,int id,int cicloLect) {
+		this.creditosRequeridos=id;
+		this.nombre=nombre;
+		this.cicloLectivo=cicloLect;
+		this.creditos=creditos;
+		this.creditosRequeridos=credReq;
+		this.cupo=cupo;
+		this.inscriptos = new ArrayList<Alumno>();
+		this.log = new Registro();
+	}
 	public Curso() {
 		super();
 		this.inscriptos = new ArrayList<Alumno>();
@@ -48,8 +59,13 @@ public class Curso {
 	 */
 	public Boolean inscribir(Alumno a) {
 		try{
+			if((cupo<inscriptos.size())&&(a.creditosObtenidos()>=creditosRequeridos)&&(a.cantCursando()<3)) {
 			log.registrar(this, "inscribir ",a.toString());
+			a.inscripcionAceptada(this);
+			inscriptos.add(a);
 			return true;
+			}
+			else return false;
 		}
 		catch(IOException e1){
 		System.out.printf("Ha ocurrido un error: "+e1.getMessage()+"\n");
@@ -61,14 +77,31 @@ public class Curso {
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
-	public void imprimirInscriptos() {
+	//Puede imprimir los incriptos en distintos ordenes segun x
+	public void imprimirInscriptos(int x) {
 	try {
+		/* El default no ordena la lista y la imprime como
+		 * se encuentre actualmente*/
+		switch(x) {
+		case 1:
+		Collections.sort(inscriptos);
+		break;
+		case 2:
+		Collections.sort(inscriptos, new ComparaCreditosAlumno());
+		break;
+		case 3:
+		Collections.sort(inscriptos,new ComparaLibretaAlumno());
+		break;
+		default:
+		}
+		for(Alumno a: inscriptos) {
+			System.out.printf("%s %d %d \n",a.getNombre(),a.getNroLib(),a.creditosObtenidos());
+		}
 	log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 	} catch (IOException e) {
 		System.out.printf("Ha ocurrido un error: "+e.getMessage()+"\n");
 	}
 	}
-	//definicion de un getter para creditos
 	public int getCreditos() {
 		return creditos; 
 	}

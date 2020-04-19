@@ -73,4 +73,12 @@ public class Alumno implements Comparable<Alumno>{
 	public int compareTo(Alumno a) {
 		return this.nombre.compareTo(a.nombre);
 	}
+	public int getNroLib() {
+		return nroLibreta;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
 }
