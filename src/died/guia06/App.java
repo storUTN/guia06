@@ -48,5 +48,48 @@ public class App {
 		b1.imprimirInscriptos(2);
 		System.out.println("Lista por numero de libreta de alumnos:");
 		b1.imprimirInscriptos(3);
+		
+		//ejemplos de excepciones lanzadas por inscribirAlumno
+		try {
+			b1.inscribirAlumno(a1);
+		}
+		catch(ExcCursado e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCreditos e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCupo e) {
+			System.out.println(e.getMessage());
+		}
+		try {
+			b2.inscribirAlumno(a2);
+		}
+		catch(ExcCursado e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCreditos e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCupo e) {
+			System.out.println(e.getMessage());
+		}
+		Curso b3=new Curso(0,0,1,"Programacion",0,0);
+		Curso b4=new Curso(0,0,1,"Quimica",0,0);
+		Curso b5=new Curso(0,0,1,"Fisica",0,0);
+		b3.inscribir(a1);
+		b4.inscribir(a1);
+		try {
+			b5.inscribirAlumno(a1);
+		}
+		catch(ExcCursado e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCreditos e) {
+			System.out.println(e.getMessage());
+		}
+		catch(ExcCupo e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }
