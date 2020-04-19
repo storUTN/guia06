@@ -19,7 +19,9 @@ public class Alumno implements Comparable<Alumno>{
 	public int creditosObtenidos() {
 		int credTotales=0;
 		for(Curso aprobado: aprobados) {
+			if(Integer.valueOf((aprobado.getCreditos()))!=null) {
 			credTotales=credTotales+aprobado.getCreditos();
+			}
 		}
 		return credTotales;
 	}
@@ -79,6 +81,12 @@ public class Alumno implements Comparable<Alumno>{
 	
 	public String getNombre() {
 		return nombre;
+	}
+	public void setNombre(String name) {
+		nombre=name;
+	}
+	public void setLibreta(int num) {
+		nroLibreta= num;
 	}
 	
 }

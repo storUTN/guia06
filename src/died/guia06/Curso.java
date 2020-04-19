@@ -59,7 +59,7 @@ public class Curso {
 	 */
 	public Boolean inscribir(Alumno a) {
 		try{
-			if((cupo<inscriptos.size())&&(a.creditosObtenidos()>=creditosRequeridos)&&(a.cantCursando()<3)) {
+			if((cupo>inscriptos.size())&&(a.creditosObtenidos()>=creditosRequeridos)&&(a.cantCursando()<3)) {
 			log.registrar(this, "inscribir ",a.toString());
 			a.inscripcionAceptada(this);
 			inscriptos.add(a);
@@ -104,5 +104,23 @@ public class Curso {
 	}
 	public int getCreditos() {
 		return creditos; 
+	}
+	public void setCupo(int num) {
+		cupo=num;
+	}
+	public void setCiclo(int num) {
+		cicloLectivo= num;
+	}
+	public void setCredNec(int num) {
+		creditosRequeridos= num;
+	}
+	public void setCred(int num) {
+		creditos=num;
+	}
+	public void setId(int num) {
+		id=num;
+	}
+	public void setNombre(String name) {
+		nombre=name;
 	}
 }
